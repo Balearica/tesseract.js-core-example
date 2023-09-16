@@ -46,7 +46,10 @@
             TessModule.FS.writeFile("/input", fileBuf);
             api.SetImageFile();
 
-            messageDiv.innerHTML = api.GetUTF8Text();
+            const text = api.GetUTF8Text();
+
+            messageDiv.innerHTML = text;
+            console.log(text);
 
             let time2 = Date.now();
 
