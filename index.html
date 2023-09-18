@@ -53,9 +53,11 @@
 
             let time2 = Date.now();
 
-            console.log("Used heap size: " + Math.round((performance.memory.usedJSHeapSize) / 1e6) + "MB");
-            console.log("Total heap size: " + Math.round((performance.memory.totalJSHeapSize) / 1e6) + "MB");
-            console.log("Total runtime: " + (time2 - time1) / 1e3 + "s");
+            if (performance?.memory?.usedJSHeapSize && performance?.memory?.totalJSHeapSize) {
+              console.log("Used heap size: " + Math.round((performance.memory.usedJSHeapSize) / 1e6) + "MB");
+              console.log("Total heap size: " + Math.round((performance.memory.totalJSHeapSize) / 1e6) + "MB");
+              console.log("Total runtime: " + (time2 - time1) / 1e3 + "s");
+            }
 
             api.End();
             TessModule.destroy(api);
