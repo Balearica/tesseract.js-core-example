@@ -39,13 +39,19 @@
 
             const messageDiv = document.getElementById('message');
 
+            console.log("Running api.Init");
             api.Init(null, lang);
 
             const file = evt.target.files[0];
             const fileBuf = new Uint8Array(await readFromBlobOrFile(file));
+
+            console.log("Running TessModule.FS.writeFile");
             TessModule.FS.writeFile("/input", fileBuf);
+
+            console.log("Running api.SetImageFile");
             api.SetImageFile();
 
+            console.log("Running api.GetUTF8Text");
             const text = api.GetUTF8Text();
 
             messageDiv.innerHTML = text;
@@ -56,8 +62,9 @@
             if (performance?.memory?.usedJSHeapSize && performance?.memory?.totalJSHeapSize) {
               console.log("Used heap size: " + Math.round((performance.memory.usedJSHeapSize) / 1e6) + "MB");
               console.log("Total heap size: " + Math.round((performance.memory.totalJSHeapSize) / 1e6) + "MB");
-              console.log("Total runtime: " + (time2 - time1) / 1e3 + "s");
             }
+
+            console.log("Total runtime: " + (time2 - time1) / 1e3 + "s");
 
             api.End();
             TessModule.destroy(api);
