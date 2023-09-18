@@ -51,6 +51,8 @@
             console.log("Running api.SetImageFile");
             api.SetImageFile();
 
+            await new Promise((r) => setTimeout(r, 250));
+
             console.log("Running api.GetUTF8Text");
             const text = api.GetUTF8Text();
 
